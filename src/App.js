@@ -4,18 +4,38 @@ import HamburgerMenu from "react-hamburger-menu";
 import './App.css';
 import about from './images/about.jpg'
 import icon from './images/icon.png'
-import {CheckOutlined} from "@ant-design/icons";
+import {ArrowUpOutlined, CheckOutlined} from "@ant-design/icons";
 import {BsCheckCircle, BsPhone, BsWhatsapp} from "react-icons/bs";
 import {AiOutlinePhone} from "react-icons/ai";
 import {FaViber} from "react-icons/fa";
 import Media from "./Media";
 import Carousel from "./Carousel";
 import Loader from "./Loader/Loader";
-import BackToTopButton from "./BackToTopButton";
 
 
 
 const App = () => {
+
+  const [backToTopButton, setBackToTopButton] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 100) {
+        setBackToTopButton(true)
+      } else {
+        setBackToTopButton(false)
+      }
+    })
+  }, [])
+
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+
   const [loader, setLoader] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [colorChange1, setColorChange1] = useState(false);
@@ -387,7 +407,13 @@ const App = () => {
             </div>
           </div>
         </div>
-        <BackToTopButton />
+        <div>
+          {backToTopButton && (
+              <div onClick={scrollUp} className='scroll-up'>
+                <ArrowUpOutlined style={{color: '#36477D', fontSize: 30, marginLeft: "auto", marginRight: "auto"}} />
+              </div>
+          )}
+        </div>
       </div>
   );
 }
