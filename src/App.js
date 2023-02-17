@@ -155,11 +155,22 @@ const App = () => {
 
   }, []);
 
+
   useEffect(() => {
-    setTimeout(() => {
+    const onPageLoad = () => {
+      console.log('Page loaded')
       setLoader(false)
-    }, 1000)
-  }, [])
+    };
+
+    // Check if the page has already loaded
+    if (document.readyState === 'complete') {
+      onPageLoad();
+    } else {
+      window.addEventListener('load', onPageLoad);
+      // Remove the event listener when component unmounts
+      return () => window.removeEventListener('load', onPageLoad);
+    }
+  }, []);
 
   if(loader) return <Loader />
 
@@ -205,8 +216,7 @@ const App = () => {
               >
                 <img className='logo' src={icon} alt='icon'/>
               </div>
-              <HamburgerMenu
-                  onClick={() => setIsOpen(true)}
+              <HamburgerMenu onClick={() => setIsOpen(true)}
                 isOpen={isOpen}
                 menuClicked={() => {
                   setIsOpen(!isOpen)
@@ -219,6 +229,10 @@ const App = () => {
                 className='burger'
             />
               <Modal
+                  onOk={() => setIsOpen(false)}
+                  onCancel={() => setIsOpen(false)}
+                  closable={true}
+                  maskClosable={true}
                   width={'90%'}
                   open={isOpen}
                   footer={null}
@@ -256,7 +270,7 @@ const App = () => {
                          setIsOpen(false)
                          refContacts.current?.scrollIntoView({behavior: 'smooth'});}}
                   >Контакти</div>
-                  <a className='navbar-item' href="tel:+380975589515">
+                  <a className='navbar-item' href="tel:+380975589515" style={{color: "black"}}>
                     +38 (097) 558-95-15
                   </a>
                 </div>

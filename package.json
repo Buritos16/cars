@@ -1,5 +1,6 @@
 {
   "name": "ukrainian-bus",
+  "homepage": "http://www.ukrainian-bus.org.ua",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
