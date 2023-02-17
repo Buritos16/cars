@@ -169,7 +169,9 @@ const App = () => {
           <div className='navbar-container'
                style={isShrunk ? {height: 65, backgroundColor: 'rgba(0, 0, 0, 0.85)'} : {height: 80}}>
             <div className='navbar'>
-              <div className='logo'>
+              <div className='logo'
+                   onClick={() => {refHeader.current?.scrollIntoView({behavior: 'smooth'});}}
+              >
                 <img className='logo' src={icon} alt='icon'/>
               </div>
               <div className='navbar-items'>
