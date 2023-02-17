@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
-import { MDBBtn, MDBContainer, MDBIcon } from 'mdb-react-ui-kit';
+import {Modal } from 'antd';
+import HamburgerMenu from "react-hamburger-menu";
 import './App.css';
 import about from './images/about.jpg'
 import icon from './images/icon.png'
@@ -10,10 +11,12 @@ import {FaViber} from "react-icons/fa";
 import Media from "./Media";
 import Carousel from "./Carousel";
 import Loader from "./Loader/Loader";
+import BackToTopButton from "./BackToTopButton";
 
 
 const App = () => {
   const [loader, setLoader] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [colorChange1, setColorChange1] = useState(false);
   const [colorChange2, setColorChange2] = useState(false);
   const [colorChange3, setColorChange3] = useState(false);
@@ -101,29 +104,6 @@ const App = () => {
     return () => window.removeEventListener('scroll', changeNavbarColor);
   }, []);
 
-  let mybutton;
-
-  window.onscroll = function () {
-    mybutton = document.getElementById("btn-back-to-top");
-    scrollFunction(mybutton);
-  };
-
-  function scrollFunction(mybutton) {
-    if (
-        document.body.scrollTop > 20 ||
-        document.documentElement.scrollTop > 20
-    ) {
-      mybutton.style.display = "block";
-    } else {
-      mybutton.style.display = "none";
-    }
-  }
-
-  function backToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
-
   const [isShrunk, setShrunk] = useState(false);
 
   useEffect(() => {
@@ -197,6 +177,69 @@ const App = () => {
                   +38 (097) 558-95-15
                 </a>
               </div>
+            </div>
+            <div className='navbar-mobile'>
+              <div className='logo'
+                   onClick={() => {refHeader.current?.scrollIntoView({behavior: 'smooth'});}}
+              >
+                <img className='logo' src={icon} alt='icon'/>
+              </div>
+              <HamburgerMenu
+                  onClick={() => setIsOpen(true)}
+                isOpen={isOpen}
+                menuClicked={() => {
+                  setIsOpen(!isOpen)
+                }}
+                width={18}
+                height={12}
+                strokeWidth={3}
+                color='white'
+                animationDuration={0.5}
+                className='burger'
+            />
+              <Modal
+                  width={'90%'}
+                  open={isOpen}
+                  footer={null}
+                  style={{top: 20}}
+                  bodyStyle={{height: '90vh'}}
+              >
+                <div className='navbar-items-mobile'>
+                  <div style={colorChange1 ? {color: "#FFB021"} : {}} className='navbar-item'
+                       onClick={() => {
+                         setIsOpen(false)
+                         refHeader.current?.scrollIntoView({behavior: 'smooth'});}}
+                  >Головна</div>
+                  <div style={colorChange2 ? {color: "#FFB021"} : {}} className='navbar-item'
+                       onClick={() => {
+                         setIsOpen(false)
+                         refAbout.current?.scrollIntoView({behavior: 'smooth'});}}
+                  >Про нас</div>
+                  <div style={colorChange3 ? {color: "#FFB021"} : {}} className='navbar-item'
+                       onClick={() => {
+                         setIsOpen(false)
+                         refAdvantages.current?.scrollIntoView({behavior: 'smooth'});}}
+                  >Переваги</div>
+                  <div style={colorChange4 ? {color: "#FFB021"} : {}} className='navbar-item'
+                       onClick={() => {
+                         setIsOpen(false)
+                         refCars.current?.scrollIntoView({behavior: 'smooth'});}}
+                  >Транспорт</div>
+                  <div style={colorChange5 ? {color: "#FFB021"} : {}} className='navbar-item'
+                       onClick={() => {
+                         setIsOpen(false)
+                         refCarousel.current?.scrollIntoView({behavior: 'smooth'});}}
+                  >Відгуки</div>
+                  <div style={colorChange6 ? {color: "#FFB021"} : {}} className='navbar-item'
+                       onClick={() => {
+                         setIsOpen(false)
+                         refContacts.current?.scrollIntoView({behavior: 'smooth'});}}
+                  >Контакти</div>
+                  <a className='navbar-item' href="tel:+380975589515">
+                    +38 (097) 558-95-15
+                  </a>
+                </div>
+              </Modal>
             </div>
           </div>
           <div className='header-content-container'>
@@ -314,7 +357,7 @@ const App = () => {
           </div>
           <Media/>
         </div>
-        <div id='carousel' ref={refCarousel} className='carousel-container'>
+        <div id='carousel' ref={refCarousel} className='carousel-container w-100'>
           <Carousel />
         </div>
         <div id='contacts' ref={refContacts} className='contacts'>
@@ -343,22 +386,7 @@ const App = () => {
             </div>
           </div>
         </div>
-        <MDBContainer fluid>
-          <MDBBtn
-              onClick={backToTop}
-              id='btn-back-to-top'
-              style={{
-                position: "fixed",
-                bottom: "20px",
-                right: "20px",
-                display: "none",
-              }}
-              className='btn-floating'
-              color='warning'
-              size='lg'>
-            <MDBIcon fas icon="arrow-up" />
-          </MDBBtn>
-        </MDBContainer>
+        <BackToTopButton />
       </div>
   );
 }

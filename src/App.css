@@ -47,8 +47,24 @@ a {
     font-size: 17px;
 }
 
+.navbar-mobile {
+    display: none;
+    z-index: 22;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+}
+
 .navbar-items {
     display: flex;
+}
+
+.navbar-items-mobile {
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar-item {
@@ -354,4 +370,132 @@ a {
 
 .number:hover {
     color: #FFB021;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.text {
+    margin-bottom: 70px;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.scroll-up {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    height: 50px;
+    width: 50px;
+    font-size: 50px;
+    background-color: #FFB021;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) {
+    .navbar-item {
+        margin-left: 0;
+        margin-bottom: 15px;
+        font-size: 22px;
+    }
+    .content-header {
+        width: 95%;
+        font-size: 26px;
+    }
+    .content-text {
+        width: 95%;
+        font-size: 19px;
+    }
+    .content-number {
+        font-size: 16px;
+    }
+    .scroll-up {
+        right: 20px;
+        bottom: 40px;
+    }
+    .number-content {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .number-item {
+        margin-bottom: 70px;
+    }
+
+    .people-photo {
+        width: 24vw;
+    }
+
+    .name {
+        font-size: 6vw;
+    }
+
+    .text {
+        font-size: 3vw;
+        width: auto;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .navbar-mobile {
+        display: flex;
+    }
+
+    .about, .advantages {
+        height: auto;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .advantages {
+        margin-top: 0;
+    }
+
+    .about-header-text {
+        font-size: 32px;
+    }
+
+    .about-part1 {
+        flex-direction: column;
+    }
+
+    .about-img {
+        width: 100%;
+    }
+
+    .about-text {
+        width: 100%;
+    }
+
+    .advantages-content-part {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .advantages-content-item {
+        margin-bottom: 40px;
+        font-size: 22px;
+    }
+
+    .media-row {
+        flex-direction: column;
+    }
+
+    .media {
+        width: 100%;
+        padding-top: 15px;
+    }
+
+    .carousel-container, .d-block {
+        height: 50vh;
+    }
 }
