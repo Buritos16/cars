@@ -219,6 +219,7 @@ a {
     margin-right: auto;
     width: 85%;
     margin-top: 80px;
+    padding-top: 80px;
 }
 
 .advantages-content {
@@ -264,6 +265,7 @@ a {
     margin-right: auto;
     width: 85%;
     padding-bottom: 80px;
+    padding-top: 80px;
 }
 
 .media-row {
@@ -281,6 +283,7 @@ a {
     width: 32%;
     height: fit-content;
     cursor: pointer;
+    padding-top: 180px;
 }
 
 .media {
