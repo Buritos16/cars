@@ -14,6 +14,7 @@ import Loader from "./Loader/Loader";
 import BackToTopButton from "./BackToTopButton";
 
 
+
 const App = () => {
   const [loader, setLoader] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
